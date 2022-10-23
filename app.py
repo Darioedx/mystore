@@ -108,7 +108,7 @@ def logout():
     return redirect("/")
 @app.route("/cart", methods=["GET", "POST"])
 def cart():
-    pass
+    return "hola"
 
 
 if __name__ == '__main__':
