@@ -1,0 +1,19 @@
+.nav-link {
+    border-style: none;
+    background-color: transparent;
+
+}
+.categorias{
+    background-color: transparent;
+
+}
+.carousel-inner {
+    position: relative;
+    width: 50%;
+    overflow: hidden;
+}
+.carousel {
+    position: relative;
+    margin-left: 35%;
+
+}

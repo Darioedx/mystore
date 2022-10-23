@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    categ1
+{% endblock %}
+
+{% block main %}
+
+
+<h1>This is a e-comerce</h1>
+    <p>posible agregar caratula</p>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for producto in productos%}
+              <div class="col">
+                <div class="card h-100">
+                    <form action="/prod" method="post">
+                       <input type="image"  src="{{producto[5]}}" class="card-img-top" alt=".....">
+                    <h5 class="card-title">{{producto[1]}}</h5>
+                    <p class="card-text">{{producto[2]}}</p>
+                    <p class="card-text" id="demo">{{producto[4]}}</p>
+                         <input type="text" name="id" value="{{producto[0]}}">
+                    </form>
+
+                </div>
+              </div>
+                 {% endfor %}
+            </div>
+
+
+{% endblock %}
