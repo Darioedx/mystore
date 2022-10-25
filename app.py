@@ -93,6 +93,8 @@ def login():
         c = conn.cursor()
         c.execute("SELECT * FROM users WHERE username = ?", (request.form.get("username"),))
         user = c.fetchall()
+        conn.commit()
+        conn.close()
         if len(user) != 1 or not check_password_hash(user[0][2], request.form.get("password")):
             return "invalid username and/or password"
         session["user_id"] = user[0][1]
@@ -100,15 +102,29 @@ def login():
 
     else:
         return render_template("login.html")
-
-
 @app.route("/logout")
 def logout():
     session.clear()
     return redirect("/")
+
+
 @app.route("/cart", methods=["GET", "POST"])
 def cart():
-    return "hola"
+
+    if "cart" not in session:
+        session["cart"] = []
+    if request.method == "POST":
+        idd = request.form.get("id")
+        if idd:
+            session["cart"].append(idd)
+
+    conn = sqlite3.connect('database.db')
+    c = conn.cursor()
+    c.execute('''SELECT * FROM productos WHERE productID IN (?)''', (request.form.get("id"),))
+    user_cart= c.fetchall()
+    conn.commit()
+    conn.close()
+    return (session["cart"])
 
 
 if __name__ == '__main__':
