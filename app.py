@@ -119,13 +119,20 @@ def cart():
             session["cart"].append(idd)
 
     conn = sqlite3.connect('database.db')
-    c = conn.cursor()
-    c.execute('''SELECT * FROM productos WHERE productID IN (?)''', (request.form.get("id"),))
-    user_cart= c.fetchall()
+    list_dict =[]
+    for producto in session["cart"]:
+        c = conn.cursor()
+        c.execute('''SELECT * FROM productos WHERE productID IN (?)''', (producto,))
+        user_cart = c.fetchall()
+        dict_prod = {
+                      "price": user_cart[0][2],
+                       "name": user_cart[0][1]
+                     }
+        list_dict.append(dict_prod)
     conn.commit()
     conn.close()
-    return (session["cart"])
-
+    return render_template ("cart.html", data = list_dict)
+##cart html, admin route + htlm
 
 if __name__ == '__main__':
     app.run()

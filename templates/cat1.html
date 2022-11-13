@@ -11,7 +11,7 @@
     <p>posible agregar caratula</p>
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 {% for producto in productos%}
-              <div class="col">
+              <div class="col" id="cat">
                 <div class="card h-100">
                     <form action="/prod" method="post">
                        <input type="image"  src="{{producto[5]}}" class="card-img-top" alt=".....">

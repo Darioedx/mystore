@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+<table class="cart">
+  <tr>
+    <th>Product</th>
+    <th>Price</th>
+  </tr>
+    {% for product in data%}
+  <tr>
+    <td>{{product["name"]}}</td>
+    <td>{{product["price"]}}</td>
+    <td>DEL</td>
+  </tr>
+    {%endfor%}
+   <tr>
+    <th></th>
+    <th>Total</th>
+   </tr>
+    <tr>
+    <td></td>
+    <td>"price"</td>
+  </tr>
+
+</table>
+
+
+{% endblock %}

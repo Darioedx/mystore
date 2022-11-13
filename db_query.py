@@ -1,4 +1,5 @@
 import sqlite3
+
 db_local = 'database.db'
 
 conn = sqlite3.connect(db_local)
