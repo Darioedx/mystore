@@ -118,6 +118,7 @@ def cart():
         if idd:
             session["cart"].append(idd)
 
+
     conn = sqlite3.connect('database.db')
     list_dict =[]
     for producto in session["cart"]:
@@ -126,13 +127,26 @@ def cart():
         user_cart = c.fetchall()
         dict_prod = {
                       "price": user_cart[0][2],
-                       "name": user_cart[0][1]
+                       "name": user_cart[0][1],
+                       "idd": user_cart[0][0]
                      }
         list_dict.append(dict_prod)
+    if request.method == "GET":
+        conn.commit()
+        conn.close()
+        return render_template("cart.html", data=list_dict)
+
     conn.commit()
     conn.close()
     return render_template ("cart.html", data = list_dict)
-##cart html, admin route + htlm
+@app.route("/delete", methods =["POST"])
+
+def delete():
+    idd = request.form.get("id")
+
+    session["cart"].remove(idd)
+    return redirect("/cart")
+
 
 if __name__ == '__main__':
     app.run()

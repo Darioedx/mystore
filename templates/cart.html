@@ -11,7 +11,13 @@
   <tr>
     <td>{{product["name"]}}</td>
     <td>{{product["price"]}}</td>
-    <td>DEL</td>
+     <form action="/delete" method="post">
+       <td> <input type="submit" value="DEL">
+            <input type="text" name="id" value="{{product.idd}}">
+       </td>
+     </form>
+    <td><a href="" class="btn btn-info btn-sm">SAVE</a></td>
+    <td><a href="" class="btn btn-success btn-sm">PAY</a></td>
   </tr>
     {%endfor%}
    <tr>
