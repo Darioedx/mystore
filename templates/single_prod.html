@@ -34,6 +34,8 @@
 <form action="/cart" method="post">
       <input name = "id" type="text" value="{{prod_data[0][0]}}">
       <input type="submit" value="add to cart">
+      <label for="qu">Qty:</label>
+      <input type="number" step="1" min="1" max="9" id="qu" name="quantity" value="1" title="Qty" size="1"  inputmode="numeric">
 </form>
 {% endblock %}
 

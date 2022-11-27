@@ -2,24 +2,31 @@
 
 {% block main %}
 
-<table class="cart">
-  <tr>
+  <table class="cart">
+   <tr>
     <th>Product</th>
     <th>Price</th>
-  </tr>
+    <th>hidenID</th>
+    <th>QTY</th>
+   </tr>
+
     {% for product in data%}
-  <tr>
+   <tr>
     <td>{{product["name"]}}</td>
     <td>{{product["price"]}}</td>
      <form action="/delete" method="post">
-       <td> <input type="submit" value="DEL">
+       <td>
+            <input type="submit" value="DEL">
             <input type="text" name="id" value="{{product.idd}}">
-       </td>
+        </td>
+         <td>
+           <input type="number" step="1" min="1" max="9"  name="quant" value="{{product.qty}}" title="Qty" size="1"  inputmode="numeric">
+
+        </td>
      </form>
-    <td><a href="" class="btn btn-info btn-sm">SAVE</a></td>
-    <td><a href="" class="btn btn-success btn-sm">PAY</a></td>
-  </tr>
+   </tr>
     {%endfor%}
+
    <tr>
     <th></th>
     <th>Total</th>
@@ -27,9 +34,10 @@
     <tr>
     <td></td>
     <td>"price"</td>
+    <td> <a class="btn btn-info btn-sm" href="/delivery">next</a></td>
+    <td><a class="btn btn-info btn-sm" href="/home"> back</a></td>
   </tr>
-
-</table>
+ </table>
 
 
 {% endblock %}
